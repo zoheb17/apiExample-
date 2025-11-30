@@ -5,6 +5,7 @@ dotenv.config()
 const port = process.env.PORT
 const app = express()
 
+app.use(express.json())
 
 app.post("/add",(req,res)=>{
     try {
@@ -34,7 +35,7 @@ app.post("/mul",(req,res)=>{
 
 // compare 
 
-app,post("/",(req,res)=>{
+app.post("/",(req,res)=>{
     try {
         let num1 =+ req.body.a 
         let num2=+ req.body.b
@@ -76,9 +77,13 @@ app.post("/even",(req,res)=>{
 app.post("/reverse",(req,res)=>{
     try {
         let string= req.body.string
-         let split = string.split("")
-        let  reverse =split.reverse()
-        res.status(200).json({msg:reverse})
+        let b = string.split("")
+        console.log(b);
+        let c=b.reverse()
+        console.log(c);
+        let d=c.join("")
+        console.log(d);
+     
         
     } catch (error) {
         console.log(error);
@@ -89,13 +94,11 @@ app.post("/reverse",(req,res)=>{
 
 app.post("/palindrom",(req,res)=>{
     try {
-         let string= req.body.string
-         let split = string.split("")
-        let  reverse =split.reverse()
-        if(a=== reverse){
-            res.status(200).json({msg:`${reverse} is palindrom`})
-        }
-        res.status(200).json({msg:error})
+         let string= req.body.a 
+         let output = a.split('').reverse('').join('');
+    if (output===string)
+
+       
     } catch (error) {
         console.log(error);
         res.status(500).json({msg:error})

@@ -1,4 +1,7 @@
 import mailer from "nodemailer"
+import Twilio  from "twilio"
+import dotenv from "dotenv"
+dotenv.config()
 
 async function sendMail(to ,subject,text){
     try {
@@ -25,4 +28,21 @@ async function sendMail(to ,subject,text){
     }
 
 }
-export default sendMail
+
+async function SMS(sid,token,from,to,body) {
+    try {
+       
+        let sender = Twilio(sid,token)
+
+        let user =sender.messages.create({
+            from,
+            to,
+            body
+        })
+        console.log("sms send");
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+export {sendMail,SMS} 
